@@ -92,12 +92,13 @@ The binary is available for Windows, Mac, and Linux. You can download from the b
 
 For a desktop app, download a release from the [releases page](https://github.com/RamboRogers/cyberchat/releases).
 
-> Apple doesn't like self signed apps. I've applied for a developer account, but it takes a while to get approved. Use brew to install the desktop app or you can use xattr to remove the quarantine attribute.
+<b>🍏 Homebrew Install for Apple Desktop App</b>
 
 ```
 brew tap ramborogers/cyberchat
 brew install --cask cyberchat-desktop
 ```
+> <i>Apple doesn't like self signed apps. I've applied for a developer account, but it takes a while to get approved. Use brew to install the desktop app or you can use xattr to remove the quarantine attribute.</i>
 
 ---
 
