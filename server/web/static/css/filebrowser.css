@@ -1,0 +1,144 @@
+       /* File Browser Specific Styles */
+       .file-browser {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        background: rgba(0, 0, 0, 0.95);
+        border: 1px solid var(--primary);
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+
+    .file-browser-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid var(--primary);
+    }
+
+    .path-navigation {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+    }
+
+    .current-path {
+        color: var(--text);
+        font-family: monospace;
+        padding: 5px 10px;
+        background: rgba(0, 255, 0, 0.1);
+        border: 1px solid var(--primary-dim);
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .current-path:hover {
+        background: rgba(0, 255, 0, 0.15);
+        border-color: var(--primary);
+    }
+
+    .file-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .file-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    .file-entry {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        margin: 2px 0;
+        transition: all 0.2s ease;
+    }
+
+    .file-entry:hover {
+        background: rgba(0, 255, 0, 0.1);
+        border-color: var(--primary);
+    }
+
+    .file-entry.directory {
+        color: var(--text-bright);
+    }
+
+    .file-entry.directory:hover {
+        background: rgba(0, 255, 157, 0.15);
+    }
+
+    .file-entry.directory .file-name::after {
+        content: '/';
+        color: var(--primary);
+    }
+
+    .file-entry.directory .file-icon {
+        color: var(--primary);
+    }
+
+    .file-entry.not-readable {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .file-icon {
+        margin-right: 10px;
+        font-size: 1.2em;
+    }
+
+    .file-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex: 1;
+    }
+
+    .file-name {
+        flex: 1;
+    }
+
+    .file-meta {
+        display: flex;
+        gap: 20px;
+        color: var(--text-dim);
+        font-size: 0.9em;
+    }
+
+    .file-size {
+        min-width: 80px;
+        text-align: right;
+    }
+
+    .file-date {
+        min-width: 150px;
+        text-align: right;
+    }
+
+    .file-browser-error {
+        color: #ff3e3e;
+        background: rgba(255, 0, 0, 0.1);
+        border: 1px solid #ff3e3e;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    @keyframes glow {
+        from { box-shadow: 0 0 10px rgba(0, 255, 0, 0.2); }
+        to { box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); }
+    }

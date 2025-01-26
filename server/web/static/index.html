@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CyberChat</title>
+    <link rel="stylesheet" href="css/cyberchat.css">
+    <link rel="stylesheet" href="css/filebrowser.css">
+    <link rel="stylesheet" href="css/filetransfer.css">
+    <link rel="stylesheet" href="css/peerviewer.css">
+    <link rel="stylesheet" href="css/filesviewer.css">
+    <link rel="icon" href="media/cyberchat.png" type="image/x-icon">
+    <script src="js/uuid.min.js"></script>
+    <script src="js/cyberchat.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/filetransfer.js"></script>
+    <script src="js/peerviewer.js"></script>
+    <script src="js/filesviewer.js"></script>
+</head>
+<body class="basic-chat">
+    <!-- Add the offline alert overlay -->
+    <div id="offline-alert" class="full-screen-alert offline" style="display: none;">
+        <div class="alert-content">
+            <div class="alert-header">🚨 RED ALERT 🚨</div>
+            <div class="alert-status"><h3>OFFLINE</h3></div>
+            <div class="alert-details"><b>Connection Lost</b></div>
+            <br><br>
+            <button onclick="window.location.reload()" class="alert-button retry-button">
+                <span class="button-text" style="color: #FFFFFF;"><b>RETRY</b></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Add the access denied overlay -->
+    <div id="access-denied" class="full-screen-alert denied" style="display: none;">
+        <div class="alert-content">
+            <div class="alert-header">SECURITY BREACH</div>
+            <div class="alert-status">ACCESS DENIED</div>
+            <div class="alert-details">UNAUTHORIZED CONNECTION ATTEMPT</div>
+            <div class="matrix-effect"></div>
+        </div>
+    </div>
+
+    <div class="header-controls">
+        <div class="scope-control">
+            <h2>Scope:</h2>
+            <select id="peer-list" title="Select a peer for private messaging or broadcast to all"></select>
+            <button id="scope-filter" class="icon-button" title="Toggle message filter - when active, shows only messages in current scope">👁️</button>
+            <span id="peer-count" class="peer-count" title="Active peers / Total known peers">0 peers</span>
+        </div>
+        <button id="sound-toggle" class="icon-button" title="Toggle message notification sounds (Ctrl+M)">🔊</button>
+        <button id="clear-messages" class="icon-button" title="Clear all message history from view">📓🗑️</button>
+        <button id="shared-files-btn" class="icon-button" title="View and manage shared files">📂</button>
+        <button id="settings-button" class="icon-button" title="Change your display name">👤</button>
+        <a href="https://github.com/ramborogers/cyberchat" target="_blank" class="branding" title="View source code on GitHub">CYBERCHAT</a>
+    </div>
+
+    <!-- Add the name settings dialog -->
+    <div id="settings-dialog" class="settings-dialog">
+        <div class="settings-header">
+            <span class="icon">👤</span>
+            <h3>Display Name</h3>
+        </div>
+        <div class="settings-content">
+            <div class="settings-field">
+                <label for="display-name">Enter your display name:</label>
+                <input type="text" id="display-name" maxlength="32" placeholder="Your name">
+            </div>
+        </div>
+        <div class="settings-actions">
+            <button class="settings-button" onclick="window.chat.closeNameDialog()">Cancel</button>
+            <button class="settings-button save" onclick="window.chat.saveDisplayName()">Save</button>
+        </div>
+    </div>
+
+    <div id="messages"></div>
+
+    <div id="input-area">
+        <input type="text" id="message-input" placeholder="Enter message..." title="Type your message here (Enter to send)">
+        <input type="file" id="file-input" style="display: none;">
+        <button id="file-button" class="action-button" title="Browse and share files with peers">📎</button>
+        <button id="send-button" title="Send message (Enter)">Send</button>
+    </div>
+
+    <div id="file-browser" class="file-browser" style="display: none;">
+        <div class="file-browser-header">
+            <div class="path-navigation">
+                <button class="cyber-button" onclick="window.chat.fileBrowser.goBack()" title="Go back to previous folder">⬅️</button>
+                <button class="cyber-button" onclick="window.chat.fileBrowser.goUp()" title="Go up one folder level">⬆️</button>
+                <div class="current-path" title="Current folder path"></div>
+            </div>
+            <div class="file-controls">
+                <button class="icon-button" onclick="window.chat.fileBrowser.toggleHidden()" title="Show/hide hidden files and folders">👁️</button>
+                <select class="type-filter" title="Filter items by type">
+                    <option value="all">All</option>
+                    <option value="file">Files</option>
+                    <option value="dir">Folders</option>
+                </select>
+                <button class="cyber-button close" onclick="window.chat.fileBrowser.hide()" title="Close file browser">✕</button>
+            </div>
+        </div>
+        <div class="file-list"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+.peer-viewer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(3px);
+}
+
+.peer-viewer-container {
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    padding: 20px;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3),
+                inset 0 0 10px rgba(0, 255, 0, 0.1);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.3),
+                    inset 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+    to {
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.4),
+                    inset 0 0 15px rgba(0, 255, 0, 0.2);
+    }
+}
+
+.peer-viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #00ff00;
+}
+
+.peer-viewer-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.peer-viewer-close {
+    background: none;
+    border: none;
+    color: #00ff00;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.peer-viewer-close:hover {
+    background: rgba(0, 255, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+.peer-list {
+    overflow-y: auto;
+    max-height: calc(80vh - 100px);
+    padding-right: 10px;
+}
+
+.peer-item {
+    background: rgba(0, 255, 0, 0.05);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.peer-item:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.peer-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.5), transparent);
+    transform: translateX(-100%);
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.peer-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.peer-guid {
+    font-size: 12px;
+    color: rgba(0, 255, 0, 0.7);
+    font-family: monospace;
+    margin-bottom: 5px;
+}
+
+.peer-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.peer-connection {
+    display: flex;
+    align-items: center;
+}
+
+.peer-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-active {
+    background: #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    animation: pulse 1s infinite;
+}
+
+.status-inactive {
+    background: #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.peer-time {
+    font-style: italic;
+}
+
+/* Scrollbar styling */
+.peer-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.peer-list::-webkit-scrollbar-track {
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 4px;
+}
+
+.peer-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+}
+
+.peer-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 0, 0.5);
+}
+
+/* Show/hide animation */
+.peer-viewer-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -1,0 +1,183 @@
+.file-transfer-container {
+    position: fixed;
+    top: 65px;
+    right: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Add idle state */
+.file-transfer-container.idle {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ensure file browser appears above transfer container */
+.file-browser {
+    z-index: 2000 !important;
+}
+
+/* Ensure the close button is clickable */
+.file-browser .close {
+    z-index: 2001 !important;
+}
+
+.file-transfer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #00ff00;
+}
+
+.file-transfer-title {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.file-transfer-minimize {
+    background: none;
+    border: none;
+    color: #00ff00;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+}
+
+.file-transfer-item {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.file-transfer-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+    transform: translateX(-100%);
+    animation: scanning 1.5s linear infinite;
+}
+
+@keyframes scanning {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.file-transfer-info {
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.file-transfer-progress {
+    height: 4px;
+    background: rgba(0, 255, 0, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #00ff00;
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    filter: blur(2px);
+}
+
+.file-transfer-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.file-transfer-item.completed {
+    border: 1px solid rgba(0, 255, 0, 0.5);
+    animation: completedPulse 1s ease-out;
+}
+
+.file-transfer-item.failed {
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    color: #ff0000;
+}
+
+@keyframes completedPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+
+.transfer-speed {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.transfer-client {
+    font-style: italic;
+    color: rgba(0, 255, 0, 0.7);
+}
+
+.transfer-size {
+    font-weight: bold;
+}
+
+/* Minimize animation */
+.file-transfer-container.minimized {
+    height: 40px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+/* Status icons */
+.transfer-status-icon {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-starting { background: #ffff00; }
+.status-transferring { background: #00ff00; animation: pulse 1s infinite; }
+.status-completed { background: #00ff00; }
+.status-failed { background: #ff0000; }
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
