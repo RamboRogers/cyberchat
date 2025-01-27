@@ -8,7 +8,7 @@ $tempDir = Join-Path $env:TEMP "cyberchat_install"
 New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
 
 # Download URL
-$downloadUrl = "https://raw.githubusercontent.com/RamboRogers/cyberchat/master/bins/cyberchat.zip"
+$downloadUrl = "https://raw.githubusercontent.com/RamboRogers/cyberchat/master/bins/cyberchat-windows-amd64.zip"
 $zipPath = Join-Path $tempDir "cyberchat.zip"
 
 try {
