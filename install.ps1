@@ -21,7 +21,7 @@ try {
     Expand-Archive -Path $zipPath -DestinationPath $tempDir -Force
 
     # Find the exe
-    $exePath = Get-ChildItem -Path $tempDir -Filter "cyberchat-windows-amd64.exe" -Recurse | Select-Object -First 1
+    $exePath = Get-ChildItem -Path $tempDir -Filter "cyberchat.exe" -Recurse | Select-Object -First 1
 
     # Create destination directory in user's profile
     $installDir = "$env:USERPROFILE\.cyberchat"
