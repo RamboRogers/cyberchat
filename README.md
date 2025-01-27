@@ -6,7 +6,7 @@
 [![Security](https://img.shields.io/badge/security-E2EE%20%7C%20PFS-brightgreen.svg)](https://github.com/ramborogers/cyberchat#-key-features)
 
 
-A secure, peer-to-peer chat application with end-to-end encryption, featuring a cyberpunk-themed UI and zero-configuration networking.
+A secure, peer-to-peer chat application with end-to-end encryption, featuring a cyberpunk-themed UI and zero-configuration networking.  Think [Localsend](https://localsend.org) but with chat and broadcast capabilities.
 
 ### When you would use cyberchat:
  - You want instant communication with friends/family without configuring anything
