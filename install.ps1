@@ -9,7 +9,7 @@ New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
 
 # Download URL
 $downloadUrl = "https://raw.githubusercontent.com/RamboRogers/cyberchat/master/bins/cyberchat-windows-amd64.zip"
-$zipPath = Join-Path $tempDir "cyberchat.zip"
+$zipPath = Join-Path $tempDir "cyberchat-windows-amd64.zip"
 
 try {
     # Download the zip file
